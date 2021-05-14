@@ -13,7 +13,7 @@ void main()
   ));
 }
 class Rotas {
-
+  String nome = "oi";
   static final String TELA_SOBRE = "/TelaSobre";
 }
 

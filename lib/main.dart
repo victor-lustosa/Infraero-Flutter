@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
-import 'infraero.dart';
+import 'pages/home/home.dart';
 
-void main()
-{  //Starta Thread principal
-  runApp(MaterialApp(title: 'Minha aplicacao', home: Infraero()));
-    // initialRoute: "/",
-    // routes:
-    // {
-
-      // Rotas.TELA_SOBRE : (context) => TelaSobre(),
-    // },
-
+void main() {
+  //Starta Thread principal
+  runApp(HomeScreen());
 }
-// class Rotas {
-//
-//   static final String TELA_SOBRE = "/TelaSobre";
-// }
-
 

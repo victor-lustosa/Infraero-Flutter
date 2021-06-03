@@ -7,14 +7,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:infraero/infraero.dart';
+import 'package:infraero/pages/infraero/home_infraero.dart';
 
 import 'package:infraero/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Infraero());
+    await tester.pumpWidget(HomeInfraero());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

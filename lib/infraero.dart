@@ -15,7 +15,7 @@ class InfraeroState extends State<Infraero> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  Scaffold(appBar: AppBar(title: Text("Calcula IMC App")),
 
     );
   }

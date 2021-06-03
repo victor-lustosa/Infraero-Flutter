@@ -3,18 +3,18 @@ import 'infraero.dart';
 
 void main()
 {  //Starta Thread principal
-  runApp(MaterialApp(title: 'Minha aplicacao', home: Infraero(),
-    initialRoute: "/",
-    routes:
-    {
+  runApp(MaterialApp(title: 'Minha aplicacao', home: Infraero()));
+    // initialRoute: "/",
+    // routes:
+    // {
 
       // Rotas.TELA_SOBRE : (context) => TelaSobre(),
-    },
-  ));
-}
-class Rotas {
+    // },
 
-  static final String TELA_SOBRE = "/TelaSobre";
 }
+// class Rotas {
+//
+//   static final String TELA_SOBRE = "/TelaSobre";
+// }
 
 

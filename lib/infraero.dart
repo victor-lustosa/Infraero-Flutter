@@ -1,30 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:infraero/main.dart';
+import 'package:infraero/pages/home/infra_home.dart';
 
 class Infraero extends StatefulWidget
 {
+
   @override
   InfraeroState createState()
   {
     return InfraeroState();
   }
 }
-class InfraeroState extends State<Infraero>
-{
+class InfraeroState extends State<Infraero> {
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return MaterialApp(
+
+    );
   }
-}
-@override
-Widget build(BuildContext context)
-{
-  return Scaffold(appBar: AppBar(title: Text("")),
-    body: SingleChildScrollView(
-      child:
-      Column(children: <Widget>
-      [
-      ],
-      ),),);
 }

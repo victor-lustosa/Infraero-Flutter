@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 
 class AppGradients {
   static final linear = LinearGradient(colors: [
-    Color(0xFF57B6E5),
-    Color.fromRGBO(130, 87, 229, 0.695),
-  ], stops: [
-    0.0,
-    0.695
-  ], transform: GradientRotation(2.13959913 * pi));
+    Color(0xFF085AB9), Color(0xFF03D0D0)],
+      stops: [ 0.0, 2.4 ],
+      transform: GradientRotation(-2.13 * pi));
 }

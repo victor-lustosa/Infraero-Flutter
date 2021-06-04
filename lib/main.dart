@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/home/home.dart';
+import 'pages/config/config.dart';
 
 void main() {
   //Starta Thread principal
-  runApp(HomeScreen());
+  runApp(MaterialApp(title: 'Infraero', home:HomeScreen()));
 }
 

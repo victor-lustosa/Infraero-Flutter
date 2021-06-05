@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:infraero/pages/aeroporto/lista_aeroportos.dart';
 import 'package:infraero/pages/config/app_gradient.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
-class HomeAeroporto extends StatelessWidget {
-
-  void avancar(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos()));
-  }
+class ListaAeroportos extends StatelessWidget {
 
   @override
   Widget build (BuildContext context) {
@@ -27,7 +22,7 @@ class HomeAeroporto extends StatelessWidget {
                           }),],),
                     Row(
                       children:<Widget>[
-                        Text("Localização do Aeroporto", style: AppTextStyles.titleBlue,)],
+                        Text("Aeroportos", style: AppTextStyles.titleBlue,)],
                       mainAxisAlignment: MainAxisAlignment.center,)
                     ,],))),
         body: SafeArea(
@@ -37,25 +32,11 @@ class HomeAeroporto extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(gradient: AppGradients.linear),
 
-                  child: Column(
-                      children: <Widget> [
+                  // child: Column(
+                  //     children: <Widget> [
                   //       Padding(padding: EdgeInsets.only(bottom: 60)),
                   //       Text("Infraero", style: AppTextStyles.title,)
-                  Row(children: <Widget> [
-                    ElevatedButton(
-                        onPressed: (){
-                          avancar(context);
-                        },
-                        child: Text("Avançar", style: AppTextStyles.button),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.white),
-                          padding:MaterialStateProperty.all( EdgeInsets.symmetric(horizontal: 60)),
-                        )),],
-                    mainAxisAlignment: MainAxisAlignment.center, ),
-                ]),
-                )
-              ]
-            // ),
+                ) ]            // ),
           ),
         )
     );

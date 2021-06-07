@@ -1,6 +1,8 @@
 import 'aeroporto.dart';
 
 class Infraero {
+  List<Aeroporto> vetAeroportosCidadeEstado = [];
+  List<Aeroporto> vetAeroportosEstado = [];
   List<Aeroporto> vetAeroportos = [];
   List<Aeroporto> historicoAeroporto = [];
 
@@ -9,7 +11,6 @@ class Infraero {
     return print("\nAeroporto criado com sucesso");
   }
 
-//METODO BUSCA O VETOR DE VOOS DE UMA DETERMINADA COMPANHIA
   salvarAntesDeletarAeroporto(String nome) {
     String variavel = "";
     for (int i = 0; i < getAeroportos.length; i++) {
@@ -24,7 +25,6 @@ class Infraero {
     return variavel;
   }
 
-//METODO BUSCA O VETOR DE VOOS DE UMA DETERMINADA COMPANHIA
   deletarAeroporto(String nomeAeroporto) {
     String variavel = "";
     for (int i = 0; i < getAeroportos.length; i++) {
@@ -47,7 +47,6 @@ class Infraero {
     }
   }
 
-  //METODO BUSCA O VETOR DE COMPANHIAS
   Aeroporto? getAeroportoPorNome(String nome) {
     Aeroporto? aero;
     for (int i = 0; i < getAeroportos.length; i++) {
@@ -58,7 +57,28 @@ class Infraero {
     return aero;
   }
 
-  //METODO BUSCA O VETOR DE COMPANHIAS
+  List<Aeroporto>? getAeroportoPorEstado(String estado) {
+    Aeroporto? aero;
+    for (int i = 0; i < getAeroportos.length; i++) {
+      if (getAeroportos[i].getEstado == estado) {
+        aero = getAeroportos[i];
+        vetAeroportosEstado.add(aero);
+      }
+    }
+    return vetAeroportosEstado;
+  }
+
+  List<Aeroporto>? getAeroportoPorCidadeEEstado(String cidade) {
+    Aeroporto? aero;
+    for (int i = 0; i < getAeroportosPorEstado.length; i++) {
+      if (getAeroportosPorEstado[i].getCidade == cidade) {
+        aero = getAeroportosPorEstado[i];
+        vetAeroportosCidadeEstado.add(aero);
+      }
+    }
+    return vetAeroportosCidadeEstado;
+  }
+
   toStringAeroportoPorNome(String nome) {
     String variavel = "";
     if (getAeroportos.length == 0) {
@@ -111,7 +131,8 @@ class Infraero {
     }
     return variavel;
   }
-
+  List<Aeroporto> get getAeroportosPorCidadeEstado => vetAeroportosCidadeEstado;
+  List<Aeroporto> get getAeroportosPorEstado => vetAeroportosEstado;
   List<Aeroporto> get getAeroportos => vetAeroportos;
   List<Aeroporto> get getHistoricoAeroporto => historicoAeroporto;
 }

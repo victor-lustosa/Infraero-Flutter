@@ -1,12 +1,12 @@
 import 'voo.dart';
 
 class Aeroporto {
-  String _nome;
-  String _codigo;
-  String _cidade;
-  String _estado;
-  String _pais;
-
+  late String _nome;
+  late String _codigo;
+  late String _cidade;
+  late String _estado;
+  late String _pais;
+  Aeroporto();
   List<Voo> _vetVoos = [];
   List<Voo> _historicoVoo = [];
   Aeroporto.with_parameters(

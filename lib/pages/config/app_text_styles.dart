@@ -24,6 +24,11 @@ class AppTextStyles {
     fontSize: 20,
     // fontWeight: FontWeight.w600,
   );
+  static final TextStyle fonteLista = GoogleFonts.ramabhadra(
+    color: AppColors.blue,
+    fontSize: 17,
+    // fontWeight: FontWeight.w600,
+  );
   static final TextStyle body = GoogleFonts.ramabhadra(
     color: AppColors.white,
     fontSize: 13,

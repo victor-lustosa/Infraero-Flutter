@@ -1,11 +1,12 @@
 import 'companhia.dart';
 
 class Voo {
-  String _data;
-  String _horario;
-  int _numero;
-  String _destino;
-  String _portaoEmbarque;
+  Voo();
+  late String _data;
+  late String _horario;
+  late int _numero;
+  late String _destino;
+  late String _portaoEmbarque;
   late Companhia companhia;
   Voo.with_parameters(this._data, this._horario, this._numero, this._destino,
       this._portaoEmbarque);

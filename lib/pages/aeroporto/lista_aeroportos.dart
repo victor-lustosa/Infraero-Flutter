@@ -8,7 +8,6 @@ class ListaAeroportos extends StatelessWidget {
   final List<Aeroporto> aeroporto;
   ListaAeroportos({required this.aeroporto});
 
-
   @override
   Widget build (BuildContext context) {
     return Scaffold(

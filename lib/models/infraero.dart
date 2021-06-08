@@ -57,7 +57,7 @@ class Infraero {
     return aero;
   }
 
-  List<Aeroporto>? getAeroportoPorEstado(String estado) {
+  void aeroportoPorEstado(String estado) {
     Aeroporto? aero;
     for (int i = 0; i < getAeroportos.length; i++) {
       if (getAeroportos[i].getEstado == estado) {
@@ -65,10 +65,10 @@ class Infraero {
         vetAeroportosEstado.add(aero);
       }
     }
-    return vetAeroportosEstado;
+    print(vetAeroportosEstado.toString());
   }
 
-  List<Aeroporto>? getAeroportoPorCidadeEEstado(String cidade) {
+  void getAeroportoPorCidadeEEstado(String cidade) {
     Aeroporto? aero;
     for (int i = 0; i < getAeroportosPorEstado.length; i++) {
       if (getAeroportosPorEstado[i].getCidade == cidade) {
@@ -76,7 +76,7 @@ class Infraero {
         vetAeroportosCidadeEstado.add(aero);
       }
     }
-    return vetAeroportosCidadeEstado;
+    print(vetAeroportosCidadeEstado.toString());
   }
 
   toStringAeroportoPorNome(String nome) {
@@ -131,6 +131,7 @@ class Infraero {
     }
     return variavel;
   }
+
   List<Aeroporto> get getAeroportosPorCidadeEstado => vetAeroportosCidadeEstado;
   List<Aeroporto> get getAeroportosPorEstado => vetAeroportosEstado;
   List<Aeroporto> get getAeroportos => vetAeroportos;

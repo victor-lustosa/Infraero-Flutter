@@ -7,6 +7,8 @@ import 'package:infraero/pages/aeroporto/lista_aeroportos.dart';
 import 'package:infraero/pages/config/app_gradient.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
 import 'package:infraero/models/aeroporto.dart';
+import 'package:infraero/pages/widgets/dropdown/dropdown_cidade.dart';
+import 'package:infraero/pages/widgets/dropdown/dropdown_estado.dart';
 
 
 class HomeAeroporto extends StatefulWidget {
@@ -20,18 +22,22 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
   GestorCompanhias gestComp = new GestorCompanhias();
   Aeroporto aeroporto = new Aeroporto();
   Voo voo = new Voo();
-  String? valor ='';
+  String? valorEstado ='';
+  String? valorCidade ='';
   void carregaDados(){
     // Companhia? comp1 = Companhia.with_parameters("Fly Emirates", 09786);
     // Companhia? comp2 = Companhia.with_parameters("GOL", 08769);
     // gestComp.insereCompanhia(comp1);
     // gestComp.insereCompanhia(comp2);
     // infra.insereAeroporto();
-    infra.insereAeroporto(Aeroporto.with_parameters("Campo de Marte","5453345", "palmas","brasil","34343"));
+    infra.insereAeroporto(Aeroporto.with_parameters("Campo de Marte","5453345", "Palmas","Tocantins","34343"));
     infra.insereAeroporto(Aeroporto.with_parameters("Campinas/Viracopos","343234", "palmas","brasil","34545"));
   }
+  carregandoListaEstado(){
+
+  }
   void avancar(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos(aeroporto: infra.vetAeroportos)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos(aeroporto: infra.vetAeroportosCidadeEstado)));
   }
   @override
   Widget build (BuildContext context) {
@@ -59,16 +65,22 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
                   decoration: BoxDecoration(gradient: AppGradients.linear),
                   child: Column(
                       children: <Widget> [
-                        Padding(padding: EdgeInsets.only(top: 42)),
-                        SingleChildScrollView(
-                            child:DropDown(
-                              callback: (String cidade){
+                        Padding(padding: EdgeInsets.only(top: 50)),
+                        DropDownEstado(
+                              callback: (String estado){
                                 setState((){
-                                  valor = cidade;
+                                  infra.aeroportoPorEstado(estado);
                                 });
                               },
-                            )
-                        ),
+                            ),
+                        Padding(padding: EdgeInsets.only(top: 50)),
+                        DropDownCidade(
+                          callback: (String cidade){
+                            setState((){
+                              infra.getAeroportoPorCidadeEEstado(cidade);
+                            });
+                          },
+                        ),Padding(padding: EdgeInsets.only(top: 280)),
                         Row(children: <Widget> [
                           ElevatedButton(
                               onPressed: (){
@@ -91,49 +103,8 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
     );
   }
 }
-class DropDown extends StatefulWidget {
-  DropDown({required this.callback});
-  final Function(String) callback;
-  @override
-  _DropDownState createState() => _DropDownState();
-}
-class _DropDownState extends State<DropDown> {
 
-   String _item_selecionado= "";
-   setItemSelecionado(String item_selecionado) => _item_selecionado = item_selecionado;
-  String nomeCidade="";
-  var _cidades =['Santos','Porto Alegre','Campinas','Rio de Janeiro'];
-  var _itemSelecionado = 'Santos';
 
-  @override
-  Widget build(BuildContext context) {
-    return  Container(
-        width:270,
-        child:Card(child:DropdownButton<String>(
-            items : _cidades.map((String dropDownStringItem) {
-              return DropdownMenuItem<String>(
-                value: dropDownStringItem,
-                child: Text(dropDownStringItem),
-              );
-            }).toList(),
-            onChanged: ( String? novoItemSelecionado) {
-              _dropDownItemSelected(novoItemSelecionado!);
-              setState(() {
-                this._itemSelecionado =  novoItemSelecionado;
-              });
-            },
-            value: _itemSelecionado
-        )
-        )
-        );
-  }
 
-  void _dropDownItemSelected(String novoItem){
-    setState(() {
-      this._itemSelecionado = novoItem;
-      widget.callback( this._itemSelecionado);
-    });
-  }
-}
 
 

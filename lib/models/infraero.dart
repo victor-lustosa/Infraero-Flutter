@@ -57,22 +57,16 @@ class Infraero {
     return aero;
   }
 
-  void aeroportoPorEstado(String estado) {
+  void getAeroportoPorCidadeEEstado(String cidade,String estado) {
     Aeroporto? aero;
-    for (int i = 0; i < getAeroportos.length; i++) {
-      if (getAeroportos[i].getEstado == estado) {
-        aero = getAeroportos[i];
-        vetAeroportosEstado.add(aero);
-      }
+    if(vetAeroportosCidadeEstado.isEmpty != true){
+    getAeroportosPorCidadeEstado.clear();
     }
-    print(vetAeroportosEstado.toString());
-  }
 
-  void getAeroportoPorCidadeEEstado(String cidade) {
-    Aeroporto? aero;
-    for (int i = 0; i < getAeroportosPorEstado.length; i++) {
-      if (getAeroportosPorEstado[i].getCidade == cidade) {
-        aero = getAeroportosPorEstado[i];
+    for (int i = 0; i < getAeroportos.length; i++) {
+      if (getAeroportos[i].getCidade == cidade &&
+          getAeroportos[i].getEstado == estado) {
+        aero = getAeroportos[i];
         vetAeroportosCidadeEstado.add(aero);
       }
     }

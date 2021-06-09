@@ -22,8 +22,8 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
   GestorCompanhias gestComp = new GestorCompanhias();
   Aeroporto aeroporto = new Aeroporto();
   Voo voo = new Voo();
-  String? valorEstado ='';
-  String? valorCidade ='';
+  String valorEstado ='';
+  String valorCidade ='';
   void carregaDados(){
     // Companhia? comp1 = Companhia.with_parameters("Fly Emirates", 09786);
     // Companhia? comp2 = Companhia.with_parameters("GOL", 08769);
@@ -32,16 +32,21 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
     // infra.insereAeroporto();
     infra.insereAeroporto(Aeroporto.with_parameters("Campo de Marte","5453345", "Palmas","Tocantins","34343"));
     infra.insereAeroporto(Aeroporto.with_parameters("Campinas/Viracopos","343234", "palmas","brasil","34545"));
+    if( infra.getAeroportosPorCidadeEstado.isEmpty == true){
+    infra.getAeroportoPorCidadeEEstado("Palmas","Tocantins");
+    }
   }
-  carregandoListaEstado(){
 
-  }
   void avancar(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos(aeroporto: infra.vetAeroportosCidadeEstado)));
+
+      Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos(aeroporto: infra.vetAeroportosCidadeEstado)));
+
   }
   @override
   Widget build (BuildContext context) {
-    carregaDados();
+     if(infra.getAeroportos.isEmpty == true){
+      carregaDados();
+     }
     return Scaffold(
         appBar:
         PreferredSize(
@@ -65,25 +70,35 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
                   decoration: BoxDecoration(gradient: AppGradients.linear),
                   child: Column(
                       children: <Widget> [
-                        Padding(padding: EdgeInsets.only(top: 50)),
+                        Padding(padding: EdgeInsets.only(top: 35)),
+                        Padding(padding: EdgeInsets.only(right: 230),
+                            child:Text("Estado", style: AppTextStyles.dropDownTitle,)),
                         DropDownEstado(
-                              callback: (String estado){
-                                setState((){
-                                  infra.aeroportoPorEstado(estado);
-                                });
-                              },
-                            ),
-                        Padding(padding: EdgeInsets.only(top: 50)),
+                          callback: (String estado){
+                            setState((){
+                             valorEstado = estado;
+
+                            });
+                          },
+                        ),
+                        Padding(padding: EdgeInsets.only(top: 35)),
+                        Padding(padding: EdgeInsets.only(right: 230),
+                            child:Text("Cidade", style: AppTextStyles.dropDownTitle,)),
                         DropDownCidade(
                           callback: (String cidade){
                             setState((){
-                              infra.getAeroportoPorCidadeEEstado(cidade);
+                              valorCidade = cidade;
+
                             });
                           },
-                        ),Padding(padding: EdgeInsets.only(top: 280)),
+                        ),Padding(padding: EdgeInsets.only(top: 240)),
                         Row(children: <Widget> [
                           ElevatedButton(
                               onPressed: (){
+                                if(valorEstado!= '' || valorCidade != ''){
+                                infra.getAeroportoPorCidadeEEstado(valorCidade,valorEstado);
+
+                                }
                                 avancar(context);
                               },
                               child: Text("Avançar", style: AppTextStyles.button),

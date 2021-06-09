@@ -8,20 +8,18 @@ class DropDownEstado extends StatefulWidget {
   _DropDownEstadoState createState() => _DropDownEstadoState();
 }
 
-
 class _DropDownEstadoState extends State<DropDownEstado> {
-
-  String _item_selecionado= "";
-  setItemSelecionado(String item_selecionado) => _item_selecionado = item_selecionado;
   String nomeEstado="";
-
+  String dropDownStringItem = '';
   List<String> Estados = ['Tocantins','Sao paulo','brasilia','Rio de Janeiro'];
-  var _itemSelecionado = 'Tocantins';
+  String _itemSelecionado ='Tocantins';
 
   @override
   Widget build(BuildContext context) {
+
     return Card(
         child:DropdownButton<String>(
+
             style: TextStyle(color: AppColors.blue),
             icon: RotatedBox(
                 quarterTurns: 1,
@@ -29,6 +27,7 @@ class _DropDownEstadoState extends State<DropDownEstado> {
                     child:Icon(Icons.chevron_right, color: Colors.blue))
             ),
             items : Estados.map((String dropDownStringItem) {
+
               return DropdownMenuItem<String>(
                   value: dropDownStringItem,
                   child:Container(
@@ -43,7 +42,8 @@ class _DropDownEstadoState extends State<DropDownEstado> {
                 this._itemSelecionado =  novoItemSelecionado;
               });
             },
-            value: _itemSelecionado
+          value: _itemSelecionado
+
         )
 
     );

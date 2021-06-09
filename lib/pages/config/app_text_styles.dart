@@ -24,6 +24,11 @@ class AppTextStyles {
     fontSize: 19,
     // fontWeight: FontWeight.w600,
   );
+  static final TextStyle dropDownTitle = GoogleFonts.ramabhadra(
+    color: AppColors.white,
+    fontSize: 20  ,
+    // fontWeight: FontWeight.w600,
+  );
   static final TextStyle button = GoogleFonts.ramabhadra(
     color: AppColors.blue,
     fontSize: 20,

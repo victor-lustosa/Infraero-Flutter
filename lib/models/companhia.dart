@@ -9,6 +9,6 @@ class Companhia {
   //sobreescrevendo o toString
 
   toString() {
-    return "\nnome: $_nome, codigo: $_codigo";
+    return _nome;
   }
 }

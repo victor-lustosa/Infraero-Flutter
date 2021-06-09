@@ -11,7 +11,9 @@ import 'detalhes_voo.dart';
 class ListaVoos extends StatelessWidget {
   final List<Voo> voo;
   ListaVoos({required this.voo});
-
+  void avancar(BuildContext context, int index){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesVoo(voo: voo[index]),));
+  }
   @override
   Widget build (BuildContext context) {
       return Scaffold(
@@ -45,10 +47,8 @@ class ListaVoos extends StatelessWidget {
                                         return BlocoListaVoo(
                                             voo: voo[index],
                                             onTap: () {
-                                              Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder: (_) => DetalhesVoo(voo: voo[index]),
-                                                ),);});})))]))
+                                              avancar(context,index);})
+                                        ;})))]))
                   ]
               )
           )

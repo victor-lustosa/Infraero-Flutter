@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:infraero/models/aeroporto.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
 
-
-
 class BlocoListaAeroporto extends StatelessWidget {
   final Aeroporto aeroporto;
   final VoidCallback? onTap;
@@ -18,6 +16,7 @@ class BlocoListaAeroporto extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(aeroporto.getNome, style: AppTextStyles.fonteLista,),
+        subtitle: Text(aeroporto.getCidade + "  -  " + aeroporto.getEstado , style: AppTextStyles.subtitle,),
         onTap: onTap,
       ),
     );

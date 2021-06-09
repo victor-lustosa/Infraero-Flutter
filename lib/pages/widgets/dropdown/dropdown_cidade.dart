@@ -28,7 +28,7 @@ class _DropDownCidadeState extends State<DropDownCidade> {
             return DropdownMenuItem<String>(
                 value: dropDownStringItem,
                 child:Container(
-                    width:260,
+                    width:280,
                     child: Padding(padding: EdgeInsets.only(left: 15),
                         child:Text(dropDownStringItem,style: AppTextStyles.dropDown,))
 

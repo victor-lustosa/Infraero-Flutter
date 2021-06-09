@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:infraero/models/aeroporto.dart';
-import 'package:infraero/pages/widgets/bloco_lista.dart';
+import 'package:infraero/pages/widgets/blocos/bloco_lista_aeroporto.dart';
 import 'package:infraero/pages/config/app_gradient.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
 import 'package:infraero/pages/voo/lista_voos.dart';
 class ListaAeroportos extends StatelessWidget {
   final List<Aeroporto> aeroporto;
   ListaAeroportos({required this.aeroporto});
+
+  void avancar(BuildContext context, int index) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ListaVoos(voo: aeroporto[index].getVoos),),);
+  }
 
   @override
   Widget build (BuildContext context) {
@@ -38,13 +42,11 @@ class ListaAeroportos extends StatelessWidget {
                                 child: SizedBox(
                                     child: ListView.builder(
                                         itemCount: aeroporto.length , itemBuilder: (context,index) {
-                                      return BlocoLista(
+                                      return BlocoListaAeroporto(
                                           aeroporto: aeroporto[index],
                                           onTap: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (_) => ListaVoos(aeroporto: aeroporto[index]),
-                                              ),);});})))]))
+                                            avancar(context,index);
+                                          });})))]))
                 ]
             )
         )

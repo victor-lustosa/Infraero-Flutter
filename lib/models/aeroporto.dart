@@ -9,6 +9,7 @@ class Aeroporto {
   Aeroporto();
   List<Voo> _vetVoos = [];
   List<Voo> _historicoVoo = [];
+  List<Voo> _vetTipoVoo = [];
   Aeroporto.with_parameters(
       this._nome, this._codigo, this._cidade, this._estado, this._pais);
 
@@ -84,7 +85,19 @@ class Aeroporto {
     }
     return variavel;
   }
-
+  void getVooPorTipoVoo(String tipoVoo) {
+    Voo? voo;
+    if(_vetTipoVoo.isEmpty != true){
+      getTipoVoo.clear();
+    }
+    for (int i = 0; i < getVoos.length; i++) {
+      if (getVoos[i].getTipoVoo == tipoVoo) {
+        voo = getVoos[i];
+        _vetTipoVoo.add(voo);
+      }
+    }
+    print(_vetTipoVoo.toString());
+  }
   String toStringHistoricoVoo() {
     String variavel = "";
     if (getHistoricoVoo.length == 0) {
@@ -129,6 +142,7 @@ class Aeroporto {
 //GETTERS
   List<Voo> get getHistoricoVoo => _historicoVoo;
   List<Voo> get getVoos => _vetVoos;
+  List<Voo> get getTipoVoo => _vetTipoVoo;
   get getNome => _nome;
   get getCodigo => _codigo;
   get getCidade => _cidade;

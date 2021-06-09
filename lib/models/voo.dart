@@ -8,10 +8,12 @@ class Voo {
   late String _destino;
   late String _portaoEmbarque;
   late Companhia companhia;
+  late String _tipoVoo;
   Voo.with_parameters(this._data, this._horario, this._numero, this._destino,
-      this._portaoEmbarque);
+      this._portaoEmbarque, this._tipoVoo);
 
   //GETTERS
+  get getTipoVoo => _tipoVoo;
   get getData => _data;
   get getDestino => _destino;
   get getPortaoEmbarque => _portaoEmbarque;
@@ -20,6 +22,7 @@ class Voo {
   get getCompanhia => companhia;
 
   //SETTERS
+  setTipoVoo(String tipoVoo) => this._tipoVoo = tipoVoo;
   setNumeroVoo(int numero) => {if (numero > 0) this._numero = numero};
   setDestino(String destino) => this._destino = destino;
   setData(String data) => this._data = data;

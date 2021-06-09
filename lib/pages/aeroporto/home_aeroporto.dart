@@ -25,15 +25,18 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
   String valorEstado ='';
   String valorCidade ='';
   void carregaDados(){
-    // Companhia? comp1 = Companhia.with_parameters("Fly Emirates", 09786);
-    // Companhia? comp2 = Companhia.with_parameters("GOL", 08769);
-    // gestComp.insereCompanhia(comp1);
-    // gestComp.insereCompanhia(comp2);
+    Companhia? comp1 = Companhia.with_parameters("Fly Emirates", 09786);
+    Companhia? comp2 = Companhia.with_parameters("GOL", 08769);
+    gestComp.insereCompanhia(comp1);
+    gestComp.insereCompanhia(comp2);
     // infra.insereAeroporto();
-    infra.insereAeroporto(Aeroporto.with_parameters("Campo de Marte","5453345", "Palmas","Tocantins","34343"));
-    infra.insereAeroporto(Aeroporto.with_parameters("Campinas/Viracopos","343234", "palmas","brasil","34545"));
+    infra.insereAeroporto(Aeroporto.with_parameters("Campo de Marte","5453345", "Palmas","Tocantins","Brasil"));
+    infra.insereAeroporto(Aeroporto.with_parameters("Campinas/Viracopos","343234", "Palmas","Sao paulo","Brasil"));
+
     if( infra.getAeroportosPorCidadeEstado.isEmpty == true){
     infra.getAeroportoPorCidadeEEstado("Palmas","Tocantins");
+    infra.estadoInfra = 'Tocantins';
+    infra.cidadeInfra = 'Palmas';
     }
   }
 

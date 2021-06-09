@@ -5,7 +5,8 @@ class Infraero {
   List<Aeroporto> vetAeroportosEstado = [];
   List<Aeroporto> vetAeroportos = [];
   List<Aeroporto> historicoAeroporto = [];
-
+  String cidadeInfra = '';
+  String estadoInfra = '';
   insereAeroporto(Aeroporto aeroporto) {
     getAeroportos.add(aeroporto);
     return print("\nAeroporto criado com sucesso");
@@ -62,10 +63,15 @@ class Infraero {
     if(vetAeroportosCidadeEstado.isEmpty != true){
     getAeroportosPorCidadeEstado.clear();
     }
-
+    if(cidade != ''){
+      cidadeInfra = cidade;
+    }
+    if(estado != ''){
+      estadoInfra = estado;
+    }
     for (int i = 0; i < getAeroportos.length; i++) {
-      if (getAeroportos[i].getCidade == cidade &&
-          getAeroportos[i].getEstado == estado) {
+      if (getAeroportos[i].getCidade == cidadeInfra &&
+          getAeroportos[i].getEstado == estadoInfra) {
         aero = getAeroportos[i];
         vetAeroportosCidadeEstado.add(aero);
       }

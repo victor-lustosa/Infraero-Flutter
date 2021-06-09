@@ -19,6 +19,22 @@ class AppTextStyles {
     fontSize: 26,
     // fontWeight: FontWeight.w600,
   );
+  static final TextStyle subtitleBlue = GoogleFonts.ramabhadra(
+    color: AppColors.blue,
+    fontSize: 18,
+    // fontWeight: FontWeight.w600,
+  );
+  static final TextStyle botoesListaVoo = GoogleFonts.ramabhadra(
+    color: AppColors.white,
+    fontSize: 14,
+    // fontWeight: FontWeight.w600,
+  );
+  static final TextStyle listraListaVoo = GoogleFonts.ramabhadra(
+    color: AppColors.white,
+    fontSize: 23,
+     // fontWeight: FontWeight.w100,
+  );
+
   static final TextStyle dropDown = GoogleFonts.ramabhadra(
     color: AppColors.blue,
     fontSize: 15,

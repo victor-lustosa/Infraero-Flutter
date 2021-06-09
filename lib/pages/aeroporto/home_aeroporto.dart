@@ -30,44 +30,41 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
     Companhia? comp2 = Companhia.with_parameters("GOL", 08769);
     gestComp.insereCompanhia(comp1);
     gestComp.insereCompanhia(comp2);
-    Voo voo1 = Voo.with_parameters( "10/05/2022", "15:30", 56542, "Salvador", "Sul","Chegada");
+    Voo voo1 = Voo.with_parameters( "10/05/2022", "15:30", 56542, "Salvador", "Sul","Palmas");
     voo1.setCompanhia(comp1);
-    Voo voo2 = Voo.with_parameters( "20/07/2021", "19:30", 23557, "Rio de Janeiro", "Noroeste","Chegada");
+    Voo voo2 = Voo.with_parameters( "20/07/2021", "19:30", 23557, "Rio de Janeiro", "Noroeste","Palmas");
     voo2.setCompanhia(comp2);
-    Voo voo3 = Voo.with_parameters( "10/05/2022", "14:45", 26546, "Florianópolis", "Norte","Chegada");
+    Voo voo3 = Voo.with_parameters( "10/05/2022", "14:45", 26546, "Florianópolis", "Norte","Palmas");
     voo3.setCompanhia(comp1);
-    Voo voo4 = Voo.with_parameters( "26/05/2023", "5:30", 53579, "Brasília", "Noroeste","Chegada");
-    voo4.setCompanhia(comp2);
-    Voo voo5 = Voo.with_parameters( "11/05/2022", "3:45", 62344, "Palmas", "Sul","Chegada");
-    voo5.setCompanhia(comp1);
-    Voo voo6 = Voo.with_parameters( "25/08/2021", "17:50",84658, "Manaus", "Noroeste","Saida");
-    voo6.setCompanhia(comp2);
-    Voo voo7 = Voo.with_parameters( "26/05/2023", "5:30", 83673, "Brasília", "Noroeste","Saida");
-    voo7.setCompanhia(comp2);
-    Voo voo8 = Voo.with_parameters( "11/05/2022", "3:45", 92948, "Palmas", "Sul","Saida");
-    voo8.setCompanhia(comp1);
-    Voo voo9 = Voo.with_parameters( "25/08/2021", "17:50", 34053, "Manaus", "Noroeste","Saida");
-    voo9.setCompanhia(comp2);
 
-    //CRIANDO AEROPORTOS
+    Voo voo4 = Voo.with_parameters( "26/05/2023", "5:30", 53579, "Brasília", "Noroeste","Sao paulo");
+    voo4.setCompanhia(comp2);
+    Voo voo5 = Voo.with_parameters( "11/05/2022", "3:45", 62344, "Manaus", "Sul","Sao paulo");
+    voo5.setCompanhia(comp1);
+    Voo voo6 = Voo.with_parameters( "25/08/2021", "17:50",84658, "Manaus", "Noroeste","Sao paulo");
+    voo6.setCompanhia(comp2);
+
+    Voo voo7 = Voo.with_parameters( "26/05/2023", "5:30", 83673, "Brasília", "Noroeste","Fortaleza");
+    voo7.setCompanhia(comp2);
+    Voo voo8 = Voo.with_parameters( "11/05/2022", "3:45", 92948, "Palmas", "Sul","Fortaleza");
+    voo8.setCompanhia(comp1);
+    Voo voo9 = Voo.with_parameters( "25/08/2021", "17:50", 34053, "Manaus", "Noroeste","Fortaleza");
+    voo9.setCompanhia(comp2);
     Aeroporto aero1= Aeroporto.with_parameters("Campo de Marte","5453345", "Palmas","Tocantins","Brasil");
     aero1.insereVoo(voo1);
     aero1.insereVoo(voo2);
     aero1.insereVoo(voo3);
-    Aeroporto aero2= Aeroporto.with_parameters("Campinas/Viracopos","343234", "Palmas","Sao paulo","Brasil");
+    Aeroporto aero2= Aeroporto.with_parameters("Campinas/Viracopos","343234", "Sao paulo","Sao paulo","Brasil");
     aero2.insereVoo(voo4);
     aero2.insereVoo(voo5);
     aero2.insereVoo(voo6);
-    Aeroporto aero3= Aeroporto.with_parameters("Lysias Rodrigues","3456345", "Palmas","Tocantins","Brasil");
+    Aeroporto aero3= Aeroporto.with_parameters("Pinto Martins","3456345", "Fortaleza","Ceara","Brasil");
     aero3.insereVoo(voo7);
     aero3.insereVoo(voo8);
     aero3.insereVoo(voo9);
     infra.insereAeroporto(aero1);
     infra.insereAeroporto(aero2);
     infra.insereAeroporto(aero3);
-
-
-
     if( infra.getAeroportosPorCidadeEstado.isEmpty == true){
     infra.getAeroportoPorCidadeEEstado("Palmas","Tocantins");
     infra.estadoInfra = 'Tocantins';

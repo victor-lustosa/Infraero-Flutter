@@ -85,19 +85,19 @@ class Aeroporto {
     }
     return variavel;
   }
-  void getVooPorTipoVoo(String tipoVoo) {
-    Voo? voo;
-    if(_vetTipoVoo.isEmpty != true){
-      getTipoVoo.clear();
-    }
-    for (int i = 0; i < getVoos.length; i++) {
-      if (getVoos[i].getTipoVoo == tipoVoo) {
-        voo = getVoos[i];
-        _vetTipoVoo.add(voo);
-      }
-    }
-    print(_vetTipoVoo.toString());
-  }
+  // void getVooPorTipoVoo(String tipoVoo) {
+  //   Voo? voo;
+  //   if(_vetTipoVoo.isEmpty != true){
+  //     getTipoVoo.clear();
+  //   }
+  //   for (int i = 0; i < getVoos.length; i++) {
+  //     if (getVoos[i].getTipoVoo == tipoVoo) {
+  //       voo = getVoos[i];
+  //       _vetTipoVoo.add(voo);
+  //     }
+  //   }
+  //   print(_vetTipoVoo.toString());
+  // }
   String toStringHistoricoVoo() {
     String variavel = "";
     if (getHistoricoVoo.length == 0) {

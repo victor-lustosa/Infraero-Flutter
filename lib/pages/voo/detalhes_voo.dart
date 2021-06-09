@@ -33,15 +33,15 @@ class DetalhesVoo extends StatelessWidget {
                       child: Column(
                           children: <Widget>[
                             Padding(padding: EdgeInsets.only(top: 15),),
-                            Padding(padding: EdgeInsets.only(right: 275),
-                                child:Text("Destino", style: AppTextStyles.detalhesTitle,)),
+                            Padding(padding: EdgeInsets.only(right: 210),
+                                child:Text("Origem - Destino", style: AppTextStyles.detalhesTitle,)),
                             Container(
                                 height: 50, width: 340,
                                 child:Card(
                                     semanticContainer: true,
                                     child: ListTile(
                                         title: Padding(padding: EdgeInsets.only(bottom: 20),
-                                        child: Text(voo.getDestino, style: AppTextStyles.detalhes,)
+                                        child: Text(voo.getOrigem + ' - ' +voo.getDestino, style: AppTextStyles.detalhes,)
                                 )))),
                             Padding(padding: EdgeInsets.only(top: 10),),
                             Padding(padding: EdgeInsets.only(right: 230),

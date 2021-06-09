@@ -9,7 +9,7 @@ class ListaAeroportos extends StatelessWidget {
   ListaAeroportos({required this.aeroporto});
 
   void avancar(BuildContext context, int index) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ListaVoos(voo: aeroporto[index].getVoos),),);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ListaVoos(aeroporto:aeroporto[index]),),);
   }
 
   @override

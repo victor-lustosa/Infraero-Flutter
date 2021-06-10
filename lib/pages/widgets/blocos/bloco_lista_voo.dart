@@ -15,7 +15,7 @@ class BlocoListaVoo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(voo.getDestino, style: AppTextStyles.fonteLista,),
+        title: Text( voo.getOrigem + ' - '+voo.getDestino , style: AppTextStyles.fonteLista,),
         subtitle: Text(voo.getData + " " +voo.getHorario, style: AppTextStyles.subtitle,),
         onTap: onTap,
       ),

@@ -2,7 +2,6 @@ import 'aeroporto.dart';
 
 class Infraero {
   List<Aeroporto> vetAeroportosCidadeEstado = [];
-  List<Aeroporto> vetAeroportosEstado = [];
   List<Aeroporto> vetAeroportos = [];
   List<Aeroporto> historicoAeroporto = [];
   String cidadeInfra = '';
@@ -133,7 +132,6 @@ class Infraero {
   }
 
   List<Aeroporto> get getAeroportosPorCidadeEstado => vetAeroportosCidadeEstado;
-  List<Aeroporto> get getAeroportosPorEstado => vetAeroportosEstado;
   List<Aeroporto> get getAeroportos => vetAeroportos;
   List<Aeroporto> get getHistoricoAeroporto => historicoAeroporto;
 }

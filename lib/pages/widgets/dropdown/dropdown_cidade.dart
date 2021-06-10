@@ -10,7 +10,7 @@ class DropDownCidade extends StatefulWidget {
 class _DropDownCidadeState extends State<DropDownCidade> {
   String nomeCidade="";
   String dropDownStringItem = '';
-  List<String> Cidades = ['Palmas','Santos','Porto Alegre','Campinas','Rio de Janeiro'];
+  List<String> Cidades = ['Palmas','Sao paulo','Fortaleza'];
   String _itemSelecionado = "Palmas";
 
   @override

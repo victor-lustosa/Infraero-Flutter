@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
               Center ( child: Image.asset(AppImages.logo_infraero, width:250,height:250)),
               Padding(padding: EdgeInsets.only(bottom: 50)),
               Text("Bem vindo!", style: AppTextStyles.fonte,),
-              Padding(padding: EdgeInsets.only(bottom: 95)),
+              Padding(padding: EdgeInsets.only(bottom: 87)),
               Row(children: <Widget> [
                 ElevatedButton(
                     onPressed: (){

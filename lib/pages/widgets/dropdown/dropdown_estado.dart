@@ -11,7 +11,7 @@ class DropDownEstado extends StatefulWidget {
 class _DropDownEstadoState extends State<DropDownEstado> {
   String nomeEstado="";
   String dropDownStringItem = '';
-  List<String> Estados = ['Tocantins','Sao paulo','brasilia','Rio de Janeiro'];
+  List<String> Estados = ['Tocantins','Sao paulo','Ceara'];
   String _itemSelecionado ='Tocantins';
 
   @override
@@ -27,14 +27,12 @@ class _DropDownEstadoState extends State<DropDownEstado> {
                     child:Icon(Icons.chevron_right, color: Colors.blue))
             ),
             items : Estados.map((String dropDownStringItem) {
-
               return DropdownMenuItem<String>(
                   value: dropDownStringItem,
                   child:Container(
                       width:280,
                       child: Padding(padding: EdgeInsets.only(left: 15),
                           child:Text(dropDownStringItem,style: AppTextStyles.dropDown,))
-
                   ));}).toList(),
             onChanged: ( String? novoItemSelecionado) {
               _dropDownItemSelected(novoItemSelecionado!);
@@ -42,10 +40,8 @@ class _DropDownEstadoState extends State<DropDownEstado> {
                 this._itemSelecionado =  novoItemSelecionado;
               });
             },
-          value: _itemSelecionado
-
+            value: _itemSelecionado
         )
-
     );
   }
 

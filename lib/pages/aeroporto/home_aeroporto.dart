@@ -25,7 +25,6 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
   String valorEstado ='';
   String valorCidade ='';
   void carregaDados(){
-
     Companhia? comp1 = Companhia.with_parameters("Fly Emirates", 09786);
     Companhia? comp2 = Companhia.with_parameters("GOL", 08769);
     gestComp.insereCompanhia(comp1);
@@ -36,12 +35,23 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
     voo2.setCompanhia(comp2);
     Voo voo3 = Voo.with_parameters( "10/05/2022", "14:45", 26546, "Florianópolis", "Norte","Palmas");
     voo3.setCompanhia(comp1);
-
+    Voo sp1 = Voo.with_parameters( "10/05/2022", "15:30", 56542, "Sao paulo", "Sul","Palmas");
+    sp1.setCompanhia(comp1);
+    Voo sp2 = Voo.with_parameters( "20/07/2021", "19:30", 23557, "Sao paulo", "Noroeste","Palmas");
+    sp2.setCompanhia(comp2);
+    Voo sp3 = Voo.with_parameters( "10/05/2022", "14:45", 26546, "Sao paulo", "Norte","Palmas");
+    sp3.setCompanhia(comp1);
+    Voo sp4 = Voo.with_parameters( "26/05/2023", "5:30", 83673, "Sao paulo", "Noroeste","Fortaleza");
+    sp4.setCompanhia(comp2);
+    Voo sp5 = Voo.with_parameters( "11/05/2022", "3:45", 92948, "Sao paulo", "Sul","Fortaleza");
+    sp5.setCompanhia(comp1);
+    Voo sp6 = Voo.with_parameters( "25/08/2021", "17:50", 34053, "Sao paulo", "Noroeste","Fortaleza");
+    sp6.setCompanhia(comp2);
     Voo voo4 = Voo.with_parameters( "26/05/2023", "5:30", 53579, "Brasília", "Noroeste","Sao paulo");
     voo4.setCompanhia(comp2);
-    Voo voo5 = Voo.with_parameters( "11/05/2022", "3:45", 62344, "Manaus", "Sul","Sao paulo");
+    Voo voo5 = Voo.with_parameters( "11/05/2022", "3:45", 62344, "Fortaleza", "Sul","Sao paulo");
     voo5.setCompanhia(comp1);
-    Voo voo6 = Voo.with_parameters( "25/08/2021", "17:50",84658, "Manaus", "Noroeste","Sao paulo");
+    Voo voo6 = Voo.with_parameters( "25/08/2021", "17:50",84658, "Goiania", "Noroeste","Sao paulo");
     voo6.setCompanhia(comp2);
 
     Voo voo7 = Voo.with_parameters( "26/05/2023", "5:30", 83673, "Brasília", "Noroeste","Fortaleza");
@@ -50,21 +60,42 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
     voo8.setCompanhia(comp1);
     Voo voo9 = Voo.with_parameters( "25/08/2021", "17:50", 34053, "Manaus", "Noroeste","Fortaleza");
     voo9.setCompanhia(comp2);
-    Aeroporto aero1= Aeroporto.with_parameters("Campo de Marte","5453345", "Palmas","Tocantins","Brasil");
-    aero1.insereVoo(voo1);
-    aero1.insereVoo(voo2);
-    aero1.insereVoo(voo3);
-    Aeroporto aero2= Aeroporto.with_parameters("Campinas/Viracopos","343234", "Sao paulo","Sao paulo","Brasil");
-    aero2.insereVoo(voo4);
-    aero2.insereVoo(voo5);
-    aero2.insereVoo(voo6);
-    Aeroporto aero3= Aeroporto.with_parameters("Pinto Martins","3456345", "Fortaleza","Ceara","Brasil");
-    aero3.insereVoo(voo7);
-    aero3.insereVoo(voo8);
-    aero3.insereVoo(voo9);
-    infra.insereAeroporto(aero1);
-    infra.insereAeroporto(aero2);
-    infra.insereAeroporto(aero3);
+    Aeroporto palmas1= Aeroporto.with_parameters("Brigadeiro Lysias Rodrigues","5453345", "Palmas","Tocantins","Brasil");
+    palmas1.insereVoo(voo1);
+    palmas1.insereVoo(voo2);
+    palmas1.insereVoo(voo3);
+    Aeroporto fortaleza1= Aeroporto.with_parameters("Pinto Martins","34368834", "Fortaleza","Ceara","Brasil");
+    fortaleza1.insereVoo(voo7);
+    fortaleza1.insereVoo(voo8);
+    fortaleza1.insereVoo(voo9);
+    fortaleza1.insereVoo(voo5);
+
+    Aeroporto saoPaulo1= Aeroporto.with_parameters('Guarulhos',"3454325", "Sao paulo","Sao paulo","Brasil");
+    saoPaulo1.insereVoo(sp1);
+    saoPaulo1.insereVoo(sp2);
+    saoPaulo1.insereVoo(sp3);
+    saoPaulo1.insereVoo(sp4);
+    saoPaulo1.insereVoo(sp5);
+    saoPaulo1.insereVoo(sp6);
+    saoPaulo1.insereVoo(voo4);
+    saoPaulo1.insereVoo(voo5);
+    saoPaulo1.insereVoo(voo6);
+
+    Aeroporto saoPaulo2=Aeroporto.with_parameters("Congonhas","34555345", "Sao paulo","Sao paulo","Brasil");
+    saoPaulo2.insereVoo(sp1);
+    saoPaulo2.insereVoo(sp2);
+    saoPaulo2.insereVoo(sp3);
+    saoPaulo2.insereVoo(sp4);
+    saoPaulo2.insereVoo(sp5);
+    saoPaulo2.insereVoo(sp6);
+    saoPaulo2.insereVoo(voo4);
+    saoPaulo2.insereVoo(voo5);
+    saoPaulo2.insereVoo(voo6);
+
+    infra.insereAeroporto(palmas1);
+    infra.insereAeroporto(fortaleza1);
+    infra.insereAeroporto(saoPaulo1);
+    infra.insereAeroporto(saoPaulo2);
     if( infra.getAeroportosPorCidadeEstado.isEmpty == true){
     infra.getAeroportoPorCidadeEEstado("Palmas","Tocantins");
     infra.estadoInfra = 'Tocantins';
@@ -122,7 +153,7 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
                               valorCidade = cidade;
                             });
                           },
-                        ),Padding(padding: EdgeInsets.only(top: 315)),
+                        ),Padding(padding: EdgeInsets.only(top: 307)),
                         Row(children: <Widget> [
                           ElevatedButton(
                               onPressed: (){

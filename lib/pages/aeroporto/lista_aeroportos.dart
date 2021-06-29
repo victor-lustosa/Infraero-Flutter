@@ -1,19 +1,34 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:infraero/models/aeroporto.dart';
 import 'package:infraero/pages/widgets/blocos/bloco_lista_aeroporto.dart';
 import 'package:infraero/pages/config/app_gradient.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
 import 'package:infraero/pages/voo/lista_voos.dart';
-class ListaAeroportos extends StatelessWidget {
-  final List<Aeroporto> aeroporto;
-  ListaAeroportos({required this.aeroporto});
+import 'package:http/http.dart' as http;
+class ListaAeroportos extends StatefulWidget {
+  String cidade;
+  String estado;
 
-  void avancar(BuildContext context, int index) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ListaVoos(aeroporto:aeroporto[index]),),);
+  ListaAeroportos({required this.cidade, required this.estado});
+
+  _ListaAeroportosState createState() => _ListaAeroportosState();
+}
+class _ListaAeroportosState extends State<ListaAeroportos>{
+
+
+  List<Aeroporto> listaAeroporto =[];
+  Future<List<Aeroporto>> buscaAllDados() async {
+    var response = await http.get(Uri.parse('https://my-json-server.typicode.com/ferpalma/fakeapi-testes/aerorporto'));
+    List<dynamic>  lista = json.decode(response.body);
+    listaAeroporto = lista.map((model) => Aeroporto.with_JSON(model)).toList();
+    return listaAeroporto;
   }
 
   @override
   Widget build (BuildContext context) {
+
     return Scaffold(
         appBar:
         PreferredSize(
@@ -40,16 +55,43 @@ class ListaAeroportos extends StatelessWidget {
                             Padding(padding: EdgeInsets.only(top: 30),),
                             Expanded(
                                 child: SizedBox(
-                                    child: ListView.builder(
-                                        itemCount: aeroporto.length , itemBuilder: (context,index) {
-                                      return BlocoListaAeroporto(
-                                          aeroporto: aeroporto[index],
-                                          onTap: () {
-                                            avancar(context,index);
-                                          });})))]))
-                ]
-            )
-        )
-    );
+                                    child: FutureBuilder<List<Aeroporto>>(
+                                    future:buscaAllDados(),
+                                        initialData: [],
+                                    builder: (context, AsyncSnapshot<List<Aeroporto>> snapshot){
+                                      final List<Aeroporto>? aeroportos = snapshot.data;
+
+                                      switch(snapshot.connectionState) {
+                                        case ConnectionState.none:
+                                          break;
+                                        case ConnectionState.waiting:
+                                          return Container(
+                                              child: Center(
+                                                child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),),
+                                              ));
+                                          break;
+                                        case ConnectionState.active:
+                                          break;
+                                        case ConnectionState.done:
+                                          if (!snapshot.hasData) {
+                                            return Container(
+                                                  child: Center(
+                                                      child: CircularProgressIndicator(  valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),),
+                                                  ),
+                                            );
+                                          }
+
+                                          return ListView.builder(
+                                              itemCount:  snapshot.data!.length , itemBuilder: (context,index) {
+                                             return BlocoListaAeroporto(
+                                                aeroporto: aeroportos![index],
+                                                onTap: () {
+                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListaVoos(aeroporto:aeroportos[index]),),);
+                                                });}
+                                          );
+                                          break;
+                                      }
+                                      return Text('Unkown error');
+                                    })))]))])));
   }
 }

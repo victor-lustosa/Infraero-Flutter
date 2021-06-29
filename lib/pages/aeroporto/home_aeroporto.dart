@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:infraero/models/cidade.dart';
 import 'package:infraero/models/companhia.dart';
+import 'package:infraero/models/estado.dart';
 import 'package:infraero/models/gestor_companhias.dart';
 import 'package:infraero/models/infraero.dart';
 import 'package:infraero/models/voo.dart';
 import 'package:infraero/pages/aeroporto/lista_aeroportos.dart';
+import 'package:infraero/pages/config/app_colors.dart';
 import 'package:infraero/pages/config/app_gradient.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
 import 'package:infraero/models/aeroporto.dart';
-import 'package:infraero/pages/widgets/dropdown/dropdown_cidade.dart';
-import 'package:infraero/pages/widgets/dropdown/dropdown_estado.dart';
 
 
 class HomeAeroporto extends StatefulWidget {
@@ -22,13 +23,49 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
   GestorCompanhias gestComp = new GestorCompanhias();
   Aeroporto aeroporto = new Aeroporto();
   Voo voo = new Voo();
-  String valorEstado ='';
-  String valorCidade ='';
+  bool enabled = false;
+  bool disabled = false;
+  bool cidadeSelected = false;
+  bool estadoSelected = false;
+  Estado estado = Estado();
+  String dropDownStringCidade = '';
+
+  final List<Estado> Estados = [
+    Estado.with_parameters('São Paulo'),
+    Estado.with_parameters('Ceara'),
+    Estado.with_parameters('Rio de Janeiro'),
+    Estado.with_parameters('Tocantins'),
+  ];
+  List<Cidade> Cidades = [];
+  late Cidade _cidadeSelecionada = Cidade();
+  String dropDownStringEstado = '';
+   late Estado _estadoSelecionado;
+
   void carregaDados(){
-    Companhia? comp1 = Companhia.with_parameters("Fly Emirates", 09786);
+    Companhia? comp1 = Companhia.with_parameters('Fly Emirates', 09786);
     Companhia? comp2 = Companhia.with_parameters("GOL", 08769);
     gestComp.insereCompanhia(comp1);
     gestComp.insereCompanhia(comp2);
+
+    Cidade cidade1 = Cidade();
+    cidade1.setNome('Palmas');
+    cidade1.setEstado('Tocantins');
+    Cidade cidade2 = Cidade();
+    cidade2.setNome('Fortaleza');
+    cidade2.setEstado('Ceara');
+    Cidade cidade3 = Cidade();
+    cidade3.setNome('Rio de Janeiro');
+    cidade3.setEstado('Rio de Janeiro');
+    Cidade cidade4 = Cidade();
+    cidade4.setNome('São Paulo');
+    cidade4.setEstado('São Paulo');
+
+    estado.insereCidade(cidade1);
+    estado.insereCidade(cidade2);
+    estado.insereCidade(cidade3);
+    estado.insereCidade(cidade4);
+
+    print(Estados.toString());
     Voo voo1 = Voo.with_parameters( "10/05/2022", "15:30", 56542, "Salvador", "Sul","Palmas");
     voo1.setCompanhia(comp1);
     Voo voo2 = Voo.with_parameters( "20/07/2021", "19:30", 23557, "Rio de Janeiro", "Noroeste","Palmas");
@@ -96,18 +133,74 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
     infra.insereAeroporto(fortaleza1);
     infra.insereAeroporto(saoPaulo1);
     infra.insereAeroporto(saoPaulo2);
-    if( infra.getAeroportosPorCidadeEstado.isEmpty == true){
-    infra.getAeroportoPorCidadeEEstado("Palmas","Tocantins");
-    infra.estadoInfra = 'Tocantins';
-    infra.cidadeInfra = 'Palmas';
-    }
+
   }
 
   void avancar(BuildContext context){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos(aeroporto: infra.vetAeroportosCidadeEstado)));
+
   }
   @override
   Widget build (BuildContext context) {
+
+    var dropdownEstado = Card(
+        child:Container(
+            width:250,
+            height: 48,
+        child:Column(
+            children:[
+        DropdownButton<Estado>(
+        style: TextStyle(color: AppColors.blue),
+        icon: RotatedBox(
+            quarterTurns: 1,
+            child:Padding(padding: EdgeInsets.only(top: 10),
+                child:Icon(Icons.chevron_right, color: Colors.blue))
+        ),
+        items : Estados.map((Estado dropDownStringItem) {
+          return DropdownMenuItem<Estado>(
+              value: dropDownStringItem,
+                  child: Padding(padding: EdgeInsets.only(left: 15),
+                      child:Text(dropDownStringItem.nome,style: AppTextStyles.dropDown,))
+              );}).toList(),
+        onChanged: ( Estado? novoItemSelecionado) {
+          _dropDownEstadoSelected(novoItemSelecionado!);
+          setState(() {
+            this._estadoSelecionado =  novoItemSelecionado;
+          });
+        },
+        hint: Text("selecione um estado.",style: AppTextStyles.dropDown,),
+        value:estadoSelected ? _estadoSelecionado : null
+    )])));
+
+    var dropdownCidade = Card(
+      child:Container(
+          width:250,
+          height: 48,
+        child:Column(
+      children:[
+        DropdownButton<Cidade>(
+            style: TextStyle(color: AppColors.blue),
+            icon: RotatedBox(
+                quarterTurns: 1,
+                child:Padding(padding: EdgeInsets.only(top: 10),
+                    child:Icon(Icons.chevron_right, color: Colors.blue))
+            ),
+            items : Cidades.map((Cidade dropDownStringItem) {
+              return DropdownMenuItem<Cidade>(
+                  value: dropDownStringItem,
+                      child: Padding(padding: EdgeInsets.only(left: 15),
+                          child:Text(dropDownStringItem.nome,style: AppTextStyles.dropDown,))
+
+                  );}).toList(),
+            onChanged: this.enabled ? ( Cidade? novoItemSelecionado) {
+              _dropDownCidadeSelected(novoItemSelecionado!);
+              setState(() {
+                this._cidadeSelecionada =  novoItemSelecionado;
+              });
+            } : null,
+        hint: Text("  selecione um estado.",style: AppTextStyles.dropDown,),
+            value:cidadeSelected ? this._cidadeSelecionada : null,
+    )])));
+
      if(infra.getAeroportos.isEmpty == true){
       carregaDados();
      }
@@ -137,31 +230,20 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
                         Padding(padding: EdgeInsets.only(top: 15)),
                         Padding(padding: EdgeInsets.only(right: 250),
                             child:Text("Estado", style: AppTextStyles.dropDownTitle,)),
-                        DropDownEstado(
-                          callback: (String estado){
-                            setState((){
-                             valorEstado = estado;
-                            });
-                          },
-                        ),
+                        dropdownEstado,
                         Padding(padding: EdgeInsets.only(top: 5)),
                         Padding(padding: EdgeInsets.only(right: 250),
                             child:Text("Cidade", style: AppTextStyles.dropDownTitle,)),
-                        DropDownCidade(
-                          callback: (String cidade){
-                            setState((){
-                              valorCidade = cidade;
-                            });
-                          },
-                        ),Padding(padding: EdgeInsets.only(top: 307)),
+                        dropdownCidade,
+                        Padding(padding: EdgeInsets.only(top: 307)),
                         Row(children: <Widget> [
                           ElevatedButton(
                               onPressed: (){
-                                if(valorEstado!= '' || valorCidade != ''){
-                                infra.getAeroportoPorCidadeEEstado(valorCidade,valorEstado);
-                                }
-                                avancar(context);
-                              },
+                                if(_cidadeSelecionada.nome != null && _estadoSelecionado.nome!= null){
+                                infra.getAeroportoPorCidadeEEstado(_cidadeSelecionada.nome,_estadoSelecionado.nome);
+
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos(cidade: _cidadeSelecionada.nome,estado: _estadoSelecionado.nome,)));
+                              }},
                               child: Text("Avançar", style: AppTextStyles.button),
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(Colors.white),
@@ -178,9 +260,21 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
         )
     );
   }
+  void _dropDownCidadeSelected(Cidade novoItem){
+    setState(() {
+      this._cidadeSelecionada = novoItem;
+      this.cidadeSelected= true;
+    });
+  }
+  void _dropDownEstadoSelected(Estado novoItem){
+    setState(() {
+      this._estadoSelecionado = novoItem;
+      this.estadoSelected = true;
+      this.enabled = true;
+      this.Cidades = this.estado.getCidadePorEstado(novoItem.nome);
+    });
+  }
 }
-
-
 
 
 

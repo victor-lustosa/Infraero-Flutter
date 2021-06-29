@@ -1,17 +1,27 @@
 import 'voo.dart';
 
 class Aeroporto {
-  late String _nome;
-  late String _codigo;
-  late String _cidade;
-  late String _estado;
-  late String _pais;
+  late int id;
+  late String nome;
+  late String codigo;
+  late String cidade;
+  late String estado;
+  late String pais;
   Aeroporto();
   List<Voo> _vetVoos = [];
   List<Voo> _historicoVoo = [];
   List<Voo> _vetTipoVoo = [];
+
+  Aeroporto.with_JSON(json)
+      : this.id = json['id'],
+        this.nome = json['nome'],
+        this.codigo = json['codigo'],
+        this.cidade = json['cidade'],
+        this.estado = json['estado'],
+        this.pais = json['pais'];
+
   Aeroporto.with_parameters(
-      this._nome, this._codigo, this._cidade, this._estado, this._pais);
+      this.nome, this.codigo, this.cidade, this.estado, this.pais);
 
   void insereVoo(Voo voo) {
     getVoos.add(voo);
@@ -158,20 +168,20 @@ class Aeroporto {
   List<Voo> get getHistoricoVoo => _historicoVoo;
   List<Voo> get getVoos => _vetVoos;
   List<Voo> get getTipoVoo => _vetTipoVoo;
-  get getNome => _nome;
-  get getCodigo => _codigo;
-  get getCidade => _cidade;
-  get getEstado => _estado;
-  get getPais => _pais;
+  get getNome => nome;
+  get getCodigo => codigo;
+  get getCidade => cidade;
+  get getEstado => estado;
+  get getPais => pais;
 
 //SETTERS
-  setNome(String nome) => _nome = nome;
-  setCodigo(String codigo) => _codigo = codigo;
-  setCidade(String cidade) => _cidade = cidade;
-  setEstado(String estado) => _estado = estado;
-  setPais(String pais) => _pais = pais;
+  setNome(String nome) => nome = nome;
+  setCodigo(String codigo) => codigo = codigo;
+  setCidade(String cidade) => cidade = cidade;
+  setEstado(String estado) => estado = estado;
+  setPais(String pais) => pais = pais;
 
   toString() {
-    return "\nnome: $_nome, codigo: $_codigo, cidade: $_cidade, estado: $_estado, pais: $_pais";
+    return "\nnome: $nome, codigo: $codigo, cidade: $cidade, estado: $estado, pais: $pais";
   }
 }

@@ -3,9 +3,7 @@ import 'package:infraero/models/aeroporto.dart';
 import 'package:infraero/models/voo.dart';
 import 'package:infraero/pages/config/app_gradient.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
-import 'package:infraero/pages/widgets/blocos/bloco_lista_aeroporto.dart';
 import 'package:infraero/pages/widgets/blocos/bloco_lista_voo.dart';
-
 import 'detalhes_voo.dart';
 
 class ListaVoos extends StatefulWidget {
@@ -19,7 +17,7 @@ class ListaVoos extends StatefulWidget {
 class _ListaVoosState extends State<ListaVoos> {
   List<Voo> voos = [];
   void avancar(BuildContext context, int index){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesVoo(voo: voos[index]),));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesVoo()));
   }
   carregandoLista(){
     voos = widget.aeroporto.getVooChegada(widget.aeroporto.getCidade);

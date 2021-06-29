@@ -2,6 +2,7 @@ import 'companhia.dart';
 
 class Voo {
   Voo();
+  late int _id;
   late String _data;
   late String _horario;
   late int _numero;
@@ -11,7 +12,14 @@ class Voo {
   late Companhia companhia;
   Voo.with_parameters(this._data, this._horario, this._numero, this._destino,
       this._portaoEmbarque, this._origem);
-
+  Voo.with_JSON(json)
+      : this._id = json['id'],
+        this._data = json['data'],
+        this._horario = json['horario'],
+        this._numero = json['numero'],
+        this._destino = json['destino'],
+        this._portaoEmbarque = json ['portaoEmbarque'];
+        // this.companhia = json['Companhia'];
   //GETTERS
   get getOrigem => _origem;
   get getData => _data;
@@ -35,6 +43,11 @@ class Voo {
   //     this._numero = _numero;
   //   }
   // }
+  int get id => _id;
+
+  set id(int value) {
+    _id = value;
+  }
 
   String toString() {
     return "\n data: $_data ,horario: $_horario ,destino: $_destino ,porto de embarque: $_portaoEmbarque, numero: $_numero " +

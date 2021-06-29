@@ -13,17 +13,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+
+      body:SingleChildScrollView(
+        child: Container(
         decoration: BoxDecoration(gradient: AppGradients.linear),
-        child: Column(
+
+          child: Column(
             children: <Widget> [
-              Padding(padding: EdgeInsets.only(bottom: 60)),
+              Padding(padding: EdgeInsets.only(bottom: 90)),
               Text("Infraero", style: AppTextStyles.title,),
               Padding(padding: EdgeInsets.only(bottom: 40)),
               Center ( child: Image.asset(AppImages.logo_infraero, width:250,height:250)),
-              Padding(padding: EdgeInsets.only(bottom: 50)),
+              Padding(padding: EdgeInsets.only(bottom: 70)),
               Text("Bem vindo!", style: AppTextStyles.fonte,),
-              Padding(padding: EdgeInsets.only(bottom: 87)),
+              Padding(padding: EdgeInsets.only(bottom: 100)),
               Row(children: <Widget> [
                 ElevatedButton(
                     onPressed: (){
@@ -35,9 +38,10 @@ class HomeScreen extends StatelessWidget {
                       padding:MaterialStateProperty.all( EdgeInsets.symmetric(horizontal: 60)),
                     )),],
                 mainAxisAlignment: MainAxisAlignment.center, ),
-            ]
+              Padding(padding: EdgeInsets.only(bottom: 95))
+            ],
         ),
       ),
-    );
+    ));
   }
 }

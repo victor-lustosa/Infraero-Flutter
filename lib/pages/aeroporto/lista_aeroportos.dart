@@ -16,11 +16,14 @@ class ListaAeroportos extends StatefulWidget {
   _ListaAeroportosState createState() => _ListaAeroportosState();
 }
 class _ListaAeroportosState extends State<ListaAeroportos>{
-
-
+  late String cidadeParams;
+  late String estadoParams;
   List<Aeroporto> listaAeroporto =[];
+
   Future<List<Aeroporto>> buscaAllDados() async {
-    var response = await http.get(Uri.parse('https://my-json-server.typicode.com/ferpalma/fakeapi-testes/aerorporto'));
+    cidadeParams = this.widget.cidade;
+    estadoParams = this.widget.estado;
+    var response = await http.get(Uri.parse('http://10.0.2.2:8000/api/aeroportos/${cidadeParams}/${estadoParams}'));
     List<dynamic>  lista = json.decode(response.body);
     listaAeroporto = lista.map((model) => Aeroporto.with_JSON(model)).toList();
     return listaAeroporto;

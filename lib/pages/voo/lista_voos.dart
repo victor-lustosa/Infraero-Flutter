@@ -5,28 +5,32 @@ import 'package:infraero/pages/config/app_gradient.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
 import 'package:infraero/pages/widgets/blocos/bloco_lista_voo.dart';
 import 'detalhes_voo.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 class ListaVoos extends StatefulWidget {
   final Aeroporto aeroporto;
 
-  String cidadeAero ='';
+
   ListaVoos({required this.aeroporto});
   @override
   _ListaVoosState createState() => _ListaVoosState();
 }
 class _ListaVoosState extends State<ListaVoos> {
   List<Voo> voos = [];
+  late int idAeroporto;
   void avancar(BuildContext context, int index){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesVoo()));
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesVoo()));
   }
-  carregandoLista(){
-    voos = widget.aeroporto.getVooChegada(widget.aeroporto.getCidade);
+  Future<List<Voo>> buscaAllDados() async {
+    idAeroporto = this.widget.aeroporto.id;
+    var response = await http.get(Uri.parse('http://10.0.2.2:8000/api/voos/${idAeroporto}'));
+    List<dynamic>  lista = json.decode(response.body);
+    voos = lista.map((model) => Voo.with_JSON(model)).toList();
+    return voos;
   }
+
   @override
   Widget build (BuildContext context) {
-    if(voos.isEmpty) {
-      carregandoLista();
-    }
     return Scaffold(
         appBar:
         PreferredSize(
@@ -54,37 +58,46 @@ class _ListaVoosState extends State<ListaVoos> {
                       decoration: BoxDecoration(gradient: AppGradients.linear),
                       child: Column(
                           children: <Widget>[
-                            Row(children: <Widget>
-                            [
-                              Padding(padding: EdgeInsets.only(right: 55)),
-                              TextButton(
-                                onPressed: (){
-                                  setState(() {
-                                    voos.clear();
-                                    voos = widget.aeroporto.getVooChegada(widget.aeroporto.getCidade);
-                                  });},
-                                child: Text("Chegada",style: AppTextStyles.botoesListaVoo,),),
-                              Padding(padding: EdgeInsets.only(left:59),
-                                  child: Text("|",style: AppTextStyles.listraListaVoo,)),
-                              Padding(padding: EdgeInsets.only(right: 62)),
-                              TextButton(
-                                onPressed: (){
-                                  setState(() {
-                                    voos.clear();
-                                    voos = widget.aeroporto.getVooSaida(widget.aeroporto.getCidade);
-                                  });
-                                },
-                                child: Text("Saida",style: AppTextStyles.botoesListaVoo,),
-                              ),
-                            ],
-                            ),
+                            Padding(padding: EdgeInsets.only(top: 30),),
                             Expanded(
                                 child: SizedBox(
-                                    child: ListView.builder(
-                                        itemCount: voos.length , itemBuilder: (context,index) {
-                                      return BlocoListaVoo(
-                                          voo: voos[index],
-                                          onTap: () {
-                                            avancar(context,index);
-                                          });})))]))])));}
+                                    child: FutureBuilder<List<Voo>>(
+                                        future:buscaAllDados(),
+                                        initialData: [],
+                                        builder: (context, AsyncSnapshot<List<Voo>> snapshot){
+                                          final List<Voo>? voos = snapshot.data;
+
+                                          switch(snapshot.connectionState) {
+                                            case ConnectionState.none:
+                                              break;
+                                            case ConnectionState.waiting:
+                                              return Container(
+                                                  child: Center(
+                                                    child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),),
+                                                  ));
+                                              break;
+                                            case ConnectionState.active:
+                                              break;
+                                            case ConnectionState.done:
+                                              if (!snapshot.hasData) {
+                                                return Container(
+                                                  child: Center(
+                                                    child: CircularProgressIndicator(  valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),),
+                                                  ),
+                                                );
+                                              }
+
+                                              return ListView.builder(
+                                                  itemCount:  snapshot.data!.length , itemBuilder: (context,index) {
+                                                return BlocoListaVoo(
+                                                    voo: voos![index],
+                                                    onTap: () {
+                                                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesVoo(voo:voos[index]),),);
+                                                    });}
+                                              );
+                                              break;
+                                          }
+                                          return Text('Unkown error');
+                                        })))]))])));
+  }
 }

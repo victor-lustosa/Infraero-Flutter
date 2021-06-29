@@ -9,7 +9,7 @@ class Voo {
   late String _origem;
   late String _destino;
   late String _portaoEmbarque;
-  late Companhia companhia;
+  late String companhia;
   Voo.with_parameters(this._data, this._horario, this._numero, this._destino,
       this._portaoEmbarque, this._origem);
   Voo.with_JSON(json)
@@ -17,8 +17,10 @@ class Voo {
         this._data = json['data'],
         this._horario = json['horario'],
         this._numero = json['numero'],
+        this._origem = json['origem'],
         this._destino = json['destino'],
-        this._portaoEmbarque = json ['portaoEmbarque'];
+        this._portaoEmbarque = json ['portaoEmbarque'],
+        this.companhia = json ['companhia'];
         // this.companhia = json['Companhia'];
   //GETTERS
   get getOrigem => _origem;
@@ -36,7 +38,7 @@ class Voo {
   setData(String data) => this._data = data;
   setPortaoEmbarque(String portaoEmbarque) =>
       this._portaoEmbarque = portaoEmbarque;
-  setCompanhia(Companhia companhia) => this.companhia = companhia;
+  setCompanhia(String companhia) => this.companhia = companhia;
   setHorario(String horario) => this._horario = horario;
   // setNumeroVoo(int numero) {
   //   if (numero > 0) {

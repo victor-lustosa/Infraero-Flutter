@@ -122,7 +122,7 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
                 this._cidadeSelecionada =  novoItemSelecionado;
               });
             } : null,
-        hint: Text("  selecione um estado.",style: AppTextStyles.dropDown,),
+        hint: Text("  selecione uma cidade.",style: AppTextStyles.dropDown,),
             value:cidadeSelected ? this._cidadeSelecionada : null,
     )])));
 

@@ -5,8 +5,7 @@ import 'package:infraero/pages/config/app_gradient.dart';
 import 'package:infraero/pages/config/app_text_styles.dart';
 import 'package:infraero/pages/widgets/blocos/bloco_lista_voo.dart';
 import 'detalhes_voo.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 class ListaVoos extends StatefulWidget {
   final Aeroporto aeroporto;
 
@@ -18,13 +17,16 @@ class ListaVoos extends StatefulWidget {
 class _ListaVoosState extends State<ListaVoos> {
   List<Voo> voos = [];
   late int idAeroporto;
+  Dio dio = Dio();
+  late Response response;
   void avancar(BuildContext context, int index){
     // Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesVoo()));
   }
   Future<List<Voo>> buscaAllDados() async {
     idAeroporto = this.widget.aeroporto.id;
-    var response = await http.get(Uri.parse('http://10.0.2.2:8000/api/voos/${idAeroporto}'));
-    List<dynamic>  lista = json.decode(response.body);
+    dio.options.headers['content-Type'] = 'application/json, charset=utf-8';
+    var response = await dio.get('http://10.0.2.2:8000/api/voos/${idAeroporto}');
+    List lista = response.data;
     voos = lista.map((model) => Voo.with_JSON(model)).toList();
     return voos;
   }

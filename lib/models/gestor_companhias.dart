@@ -50,7 +50,7 @@ class GestorCompanhias {
 //METODO PARA DELETAR
   deletarCompanhia(String nome) {
     String variavel = "";
-    for (int i = 0; i < getCompanhias.length; i++) {
+    for (int i = 0; i < getCompanhias.length;) {
       if (getCompanhias[i].getNome == nome) {
         getCompanhias.remove(getCompanhias[i]);
         variavel = "\n*** Companhia removida com sucesso ***";

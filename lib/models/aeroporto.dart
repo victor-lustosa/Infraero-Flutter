@@ -95,9 +95,10 @@ class Aeroporto {
     }
     return variavel;
   }
-  List<Voo>  getVooChegada(String cidade) {
+
+  List<Voo> getVooChegada(String cidade) {
     Voo? voo;
-    if(_vetTipoVoo.isEmpty != true){
+    if (_vetTipoVoo.isEmpty != true) {
       getTipoVoo.clear();
     }
     for (int i = 0; i < getVoos.length; i++) {
@@ -109,9 +110,10 @@ class Aeroporto {
     print(_vetTipoVoo.toString());
     return getTipoVoo;
   }
-  List<Voo>  getVooSaida(String cidade) {
+
+  List<Voo> getVooSaida(String cidade) {
     Voo? voo;
-    if(_vetTipoVoo.isEmpty != true){
+    if (_vetTipoVoo.isEmpty != true) {
       getTipoVoo.clear();
     }
     for (int i = 0; i < getVoos.length; i++) {
@@ -123,6 +125,7 @@ class Aeroporto {
     print(_vetTipoVoo.toString());
     return getTipoVoo;
   }
+
   String toStringHistoricoVoo() {
     String variavel = "";
     if (getHistoricoVoo.length == 0) {
@@ -138,7 +141,7 @@ class Aeroporto {
 //METODO PARA DELETAR
   deletarVoo(int numero) {
     String variavel = "";
-    for (int i = 0; i < getVoos.length; i++) {
+    for (int i = 0; i < getVoos.length;) {
       if (getVoos[i].getNumeroVoo == numero) {
         getVoos.remove(getVoos[i]);
         variavel = "\n*** voo removido com sucesso ***";

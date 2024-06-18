@@ -27,7 +27,7 @@ class Infraero {
 
   deletarAeroporto(String nomeAeroporto) {
     String variavel = "";
-    for (int i = 0; i < getAeroportos.length; i++) {
+    for (int i = 0; i < getAeroportos.length;) {
       if (getAeroportos[i].getNome == nomeAeroporto) {
         getAeroportos.remove(getAeroportos[i]);
         variavel = "\nAeroporto removido com sucesso";
@@ -57,15 +57,15 @@ class Infraero {
     return aero;
   }
 
-  void getAeroportoPorCidadeEEstado(String cidade,String estado) {
+  void getAeroportoPorCidadeEEstado(String cidade, String estado) {
     Aeroporto? aero;
-    if(vetAeroportosCidadeEstado.isEmpty != true){
-    getAeroportosPorCidadeEstado.clear();
+    if (vetAeroportosCidadeEstado.isEmpty != true) {
+      getAeroportosPorCidadeEstado.clear();
     }
-    if(cidade != ''){
+    if (cidade != '') {
       cidadeInfra = cidade;
     }
-    if(estado != ''){
+    if (estado != '') {
       estadoInfra = estado;
     }
     for (int i = 0; i < getAeroportos.length; i++) {

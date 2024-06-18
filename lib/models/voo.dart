@@ -1,4 +1,3 @@
-import 'companhia.dart';
 
 class Voo {
   Voo();

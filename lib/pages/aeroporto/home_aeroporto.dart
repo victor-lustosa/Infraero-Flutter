@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:infraero/models/cidade.dart';
-import 'package:infraero/models/companhia.dart';
 import 'package:infraero/models/estado.dart';
 import 'package:infraero/models/gestor_companhias.dart';
 import 'package:infraero/models/infraero.dart';
@@ -164,11 +163,10 @@ class _HomeAeroportoState extends State<HomeAeroporto>{
                         Row(children: <Widget> [
                           ElevatedButton(
                               onPressed: (){
-                                if(_cidadeSelecionada.nome != null && _estadoSelecionado.nome!= null){
-                                infra.getAeroportoPorCidadeEEstado(_cidadeSelecionada.nome,_estadoSelecionado.nome);
+                              infra.getAeroportoPorCidadeEEstado(_cidadeSelecionada.nome,_estadoSelecionado.nome);
 
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos(cidade: _cidadeSelecionada.nome,estado: _estadoSelecionado.nome,)));
-                              }},
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ListaAeroportos(cidade: _cidadeSelecionada.nome,estado: _estadoSelecionado.nome,)));
+                            },
                               child: Text("Avançar", style: AppTextStyles.button),
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(Colors.white),

@@ -1,4 +1,3 @@
-import 'estado.dart';
 
 class Cidade {
   Cidade();
